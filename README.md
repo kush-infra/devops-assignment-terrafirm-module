@@ -87,11 +87,6 @@ Edit `terraform.tfvars` to change:
 terraform destroy
 ```
 
-## Design Notes
-
-Kept it straightforward with two modules - one for VPC networking, one for EKS. The VPC creates the public/private subnet layout that EKS expects, with proper tagging so the AWS load balancer controller knows which subnets to use. Single NAT gateway keeps costs down for dev/test; swap to one per AZ for production.
-
-Used managed node groups instead of self-managed since AWS handles the patching and AMI updates. The kubernetes provider authenticates via the AWS CLI exec plugin, which plays nice with temporary credentials and IAM roles.
 
 ## Project Structure
 
